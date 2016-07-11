@@ -20,19 +20,22 @@ Plugin 'godlygeek/tabular'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'bronson/vim-trailing-whitespace'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-:set expandtab
-:set tabstop=2
-
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype python setlocal ts=4 sts=4 sw=4
+" No tabs, only spaces
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal noexpandtab
 
 " By default, JSX syntax highlighting and indenting will be enabled only for
 " files with the .jsx extension. If you would like JSX in .js files, add
 let g:jsx_ext_required = 0
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
