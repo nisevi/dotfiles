@@ -12,48 +12,128 @@ Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-fugitive'
-Plugin 'mileszs/ack.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'vim-ruby/vim-ruby'
+
+" Don't dare to leave a white space!
 Plugin 'bronson/vim-trailing-whitespace'
+
+"Rails
+Plugin 'tpope/vim-rails'
+
+" Dependencies of snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
+
+Plugin 'garbas/vim-snipmate'
+
+"Git wrapper
+Plugin 'tpope/vim-fugitive'
+
+" Dependency managment
+Plugin 'gmarik/vundle'
+
+" Making comments
+Plugin 'tomtom/tcomment_vim'
+
+" Molokai theme
+Plugin 'tomasr/molokai'
+
+" Surround your code. Is all about 'surroundings'
+Plugin 'tpope/vim-surround'
+
+" Every one should have a pair (Autogenerate pairs for "{[( )
+Plugin 'jiangmiao/auto-pairs'
+
+" Tab completions
+Plugin 'ervandew/supertab'
+
+" Fuzzy finder for vim (CTRL+P)
+Plugin 'kien/ctrlp.vim'
+
+" For tests
+Plugin 'janko-m/vim-test'
+
+" Navigation tree
+Plugin 'scrooloose/nerdtree'
+
+" Dispatching the test runner to tmux pane
+Plugin 'tpope/vim-dispatch'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Tell Vim where to look for the tags file.
+set tags=./tags;
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
 
-" Be smart when using tabs ;)
-set smarttab
+set autoindent " Auto indention should be on
 
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
+" Syntax highlighting and theme
+syntax enable
+
+" Configs to make Molokai look great
+set background=dark
+let g:molokai_original=1
+let g:rehash256=1
+set t_Co=256
+colorscheme molokai
+
+" Lovely linenumbers
+set nu
+
+" My leader key
+let mapleader=","
+
+" Searching
+set hlsearch
+" Highlights the areas that you search for.
+set incsearch
+" Searches incremetally as you type.
+set ignorecase
+" Ignores the case in the file.
+set smartcase
+
+" Remove highlights with leader + enter
+nmap <Leader><CR> :nohlsearch<cr>
+
+" Don't be a noob, join the no arrows key movement
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
+" Removing escape
+ino jj <esc>
+cno jj <c-c>
+vno v <esc>
+
+" highlight the current line
+set cursorline
+" Highlight active column
+set cuc cul"
+
+" Tab completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+
+" Ruby hash syntax conversion
+nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
+
+map <leader>q :NERDTreeToggle<CR>
+
+set clipboard=unnamed
 
 " Linebreak on 500 characters
 set lbr
 set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-" By default, JSX syntax highlighting and indenting will be enabled only for
-" files with the .jsx extension. If you would like JSX in .js files, add
-let g:jsx_ext_required = 0
-
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " No swap files
 set noswapfile
@@ -66,3 +146,16 @@ func! DeleteTrailingWS()
 endfunc
 
 map <leader>w :call DeleteTrailingWS()<CR>
+
+" Ruby stuff
+" ================
+syntax on                 " Enable syntax highlighting
+filetype plugin indent on " Enable filetype-specific indenting and plugins
+
+augroup myfiletypes
+    " Clear old autocmds in group
+    autocmd!
+    " autoindent with two spaces, always expand tabs
+    autocmd FileType ruby,eruby,yaml,markdown set ai sw=2 sts=2 et
+augroup END
+" ================
