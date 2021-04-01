@@ -1,66 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-Plugin 'vim-ruby/vim-ruby'
-
-" Don't dare to leave a white space!
-Plugin 'bronson/vim-trailing-whitespace'
-
-"Rails
-Plugin 'tpope/vim-rails'
-
-" Dependencies of snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'honza/vim-snippets'
-
-Plugin 'garbas/vim-snipmate'
-
-"Git wrapper
-Plugin 'tpope/vim-fugitive'
-
-" Dependency managment
-Plugin 'gmarik/vundle'
-
-" Making comments
-Plugin 'tomtom/tcomment_vim'
-
-" Molokai theme
-Plugin 'tomasr/molokai'
-
-" Surround your code. Is all about 'surroundings'
-Plugin 'tpope/vim-surround'
-
-" Every one should have a pair (Autogenerate pairs for "{[( )
-Plugin 'jiangmiao/auto-pairs'
-
-" Tab completions
-Plugin 'ervandew/supertab'
-
-" Fuzzy finder for vim (CTRL+P)
-Plugin 'kien/ctrlp.vim'
-
-" For tests
-Plugin 'janko-m/vim-test'
-
-" Navigation tree
-Plugin 'scrooloose/nerdtree'
-
-" Dispatching the test runner to tmux pane
-Plugin 'tpope/vim-dispatch'
-
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Tell Vim where to look for the tags file.
@@ -74,13 +14,6 @@ set autoindent " Auto indention should be on
 
 " Syntax highlighting and theme
 syntax enable
-
-" Configs to make Molokai look great
-set background=dark
-let g:molokai_original=1
-let g:rehash256=1
-set t_Co=256
-colorscheme molokai
 
 " Lovely linenumbers
 set nu
